@@ -49,10 +49,10 @@
       when: mode == "master"
 
     - name: Run kubeadm join on node
-      command: kubeadm join --token {{ kubeadm_token }} master
+      command: kubeadm join --skip-preflight-checks --token {{ kubeadm_token }} master
       when: mode == "node"
 
     - name: Copy kube login config to ~/.kube/config
-      copy: src={{ playbook_dir}}/k8s-pi-cluster.cfg dest=/home/pi/.kube/config owner=pi group=users
+      copy: src={{ playbook_dir}}/run/pi-cluster.cfg dest=/home/pi/.kube/config owner=pi group=users
 
   when: init_required == true
