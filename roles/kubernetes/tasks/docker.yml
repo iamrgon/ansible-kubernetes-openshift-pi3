@@ -1,6 +1,18 @@
+- name: Setup docker.socket conf
+  copy:
+    src=docker.socket
+    dest=/lib/systemd/system/docker.socket
+    mode=0644
+
+- name: Setup docker.service conf
+  copy:
+    src=docker.service
+    dest=/lib/systemd/system/docker.service
+    mode=0644
+
 - name: Allow Docker to be accessible from the outside
   lineinfile:
-    dest: /etc/systemd/system/docker.service.d/overlay.conf
+    dest: /lib/systemd/system/docker.service
     regexp: '^(ExecStart.*dockerd.*?)(\s*-H tcp://.*:2375\s*)?$'
     line: '\1 -H tcp://{{ inventory_hostname }}:2375'
     backrefs: true
