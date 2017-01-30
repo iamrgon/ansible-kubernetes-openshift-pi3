@@ -1,0 +1,8 @@
+# ---
+# {{ ansible_managed }}
+[Service]
+# NOTE: Setting iptables=false flag due to a change in Docker v1.3.0 that
+# prevents flannel from working correctly.
+# See https://github.com/docker/docker/pull/28257
+ExecStart=
+ExecStart=/usr/bin/dockerd -H fd:// -H tcp://{{ inventory_hostname }}:{{ docker.bind_port }} --iptables=false --bip={{ network.bridge_ip }}
