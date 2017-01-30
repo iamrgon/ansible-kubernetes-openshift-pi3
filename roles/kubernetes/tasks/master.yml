@@ -1,5 +1,5 @@
 - name: Run kubeadm init on master
-  command: kubeadm init --skip-preflight-checks --token {{ kubeadm_token }} --service-cidr {{ network.service_subnet }} --pod-network-cidr={{ network.pod_subnet }}
+  command: kubeadm init --skip-preflight-checks --token {{ kubeadm_token }} --pod-network-cidr={{ network.pod_subnet }}
   register: kubeadm_init
 
 # - debug: var=kubeadm_init.stdout
