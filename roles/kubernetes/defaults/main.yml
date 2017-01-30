@@ -5,6 +5,8 @@ docker:
 
 systemd_docker_dir: "/etc/systemd/system/docker.service.d"
 
+wifi_enabled: true
+
 reset: false
 network:
   bridge_ip: 10.244.0.1/16

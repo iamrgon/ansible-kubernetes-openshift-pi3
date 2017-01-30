@@ -5,4 +5,4 @@
 # prevents flannel from working correctly.
 # See https://github.com/docker/docker/pull/28257
 ExecStart=
-ExecStart=/usr/bin/dockerd -H fd:// -H tcp://{{ inventory_hostname }}:{{ docker.bind_port }} --iptables=false --bip={{ network.bridge_ip }}
+ExecStart=/usr/bin/dockerd -H fd:// -H tcp://{{ docker.bind_host }}:{{ docker.bind_port }} --storage-driver=overlay --iptables=false --bip={{ network.bridge_ip }}
